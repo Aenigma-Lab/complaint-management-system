@@ -1,0 +1,59 @@
+2:18 AM 9/16/2021
+
+Asset Management System
+
+Rule: 
+Thumbnail: 80x80 px
+Inline Preview Image: 590x300 px
+
+Screenshots: 1280 x 720 px
+*** Portrait: from 700px to 900px high, Landscape: min resolution of 1280 x 720 and aspect ratio of 16:9
+
+Video: MP4 or FLV (640x360)
+
+****************************************************
+Tools: 
+https://www.zamzar.com/converters/video/wmv-to-mp4/
+https://picresize.com/en/batch
+https://www.bensound.com/
+
+
+
+
+
+
+
+
+
+*********************************************************************************
+To Reviewer:
+Dear Reviewer,
+I hope this message finds you well. Please review and publish my new item Pharmacy & Hospital Management System in ASP.NET Core 3.1
+
+Please let me know if you have any further queries.
+
+B/R
+Shahed
+
+
+
+
+
+To Reviewer: For Review
+Dear Reviewer,
+I hope this message finds you well. Previously I have submitted this item and got a reply like,
+
+"Your documentation was improved, but you still need to add more information related to the main features that the costumer will find in you item, for example the different sections in the admin panel and how the costumer will interact with it."
+
+
+Based on the item documentation feedback reply, I have reviewed the documentation properly and modified it accordingly. Please review and publish my new item if everything is okay.
+
+Doc: ~ComplaintMngSys.zip\Complaint Management System.pdf
+
+Please do let us know if you have any questions or concerns at any stage. Look forward to hearing my item published news.
+
+B/R
+Shahed
+
+
+

@@ -1,0 +1,85 @@
+﻿
+
+dotnet ef migrations add InitialCreate
+dotnet ef database update
+
+npx kill-port 5001
+
+
+
+
+dotnet build
+dotnet run
+
+Publish App:
+dotnet publish -c Release -p:UseAppHost=false
+
+
+
+Lat and long:
+https://www.w3schools.com/html/tryit.asp?filename=tryhtml5_geolocation
+
+
+-- Kill Current Connection and Drop MSSQL DB: 
+USE [master]
+GO
+ALTER DATABASE [ComplaintMngSys] SET  SINGLE_USER WITH ROLLBACK IMMEDIATE
+GO
+USE [master]
+GO
+DROP DATABASE [ComplaintMngSys]
+GO
+
+
+
+
+
+-- Old code
+<body class="hold-transition login-page" style="background-image: url('/images/F.jpg') ; background-size: cover;">
+<a href="#" style="color:white; font-style:italic">Complaint Management System(CMS): A Complete Solution of
+        Complaint/Issue/Helpdesk Ticket/My Ticket Helpdesk Support System</a>
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="#" style="color:white;"><b>Complaint</b> M@nagement</a>
+        </div>
+        <div class="card">
+            <div class="card-body login-card-body">
+                @RenderBody()
+            </div>
+        </div>
+
+        <div class="text-center">
+            <a href="@Url.Action("Login", "Account")">Or sign in as a different user</a>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12" id="divLoginInfo"></div>
+        </div>
+    </div>
+
+
+<div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-lg-5" id="form-section">
+                <div id="auth-logo">
+                    <h1 style="color: white;"><b>Business ERP Solution</b></h1>
+                </div>
+
+                @RenderBody()
+            </div>
+
+            <div class="col-lg-7 visible-lg" id="background-section"
+                style="background-image: url('/images/F.jpg') ; background-size: cover;">
+
+                <div class="text-center" style="margin-top: 25%;">
+                    <img src='~/images/ComplaintManagementSystem.png' alt="AdminLTE Logo"
+                        class="brand-image img-circle elevation-3 imgCustom200pxCircle">
+                </div>
+                <div class="text-center">
+                    <a href="@Url.Action("Login", "Account")" style="background-color: white;">
+                        <b>Or sign in as a different user</b>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>

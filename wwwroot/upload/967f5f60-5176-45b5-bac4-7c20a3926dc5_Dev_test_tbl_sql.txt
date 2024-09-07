@@ -1,0 +1,693 @@
+USE [360Core]
+GO
+/****** Object:  Table [dbo].[appointments]    Script Date: 7/16/2023 1:19:49 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[appointments](
+	[id] [bigint] IDENTITY(1,1) NOT NULL,
+	[subscription_id] [bigint] NULL,
+	[appointment_for] [nvarchar](20) NOT NULL,
+	[doctor_id] [nvarchar](30) NOT NULL,
+	[speciality] [nvarchar](255) NULL,
+	[is_instant] [bit] NOT NULL,
+	[is_chat_closed] [bit] NOT NULL,
+	[chat_closed_by] [nvarchar](255) NULL,
+	[corporate_client_id] [nvarchar](50) NULL,
+	[z_id] [nvarchar](50) NOT NULL,
+	[patient_id] [nvarchar](50) NOT NULL,
+	[booking_date] [date] NULL,
+	[slot] [nvarchar](20) NULL,
+	[consultation_fee] [float] NULL,
+	[booking_type] [nvarchar](20) NULL,
+	[appointment_number] [nvarchar](30) NULL,
+	[order_date] [date] NULL,
+	[last_status] [nvarchar](20) NULL,
+	[appointment_id] [nvarchar](50) NOT NULL,
+	[call_start_time] [nvarchar](20) NULL,
+	[call_end_time] [nvarchar](20) NULL,
+	[call_duration] [nvarchar](20) NULL,
+	[additional_data] [nvarchar](max) NULL,
+	[created_at] [datetime] NULL,
+	[updated_at] [datetime] NULL,
+	[deleted_at] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[assessments]    Script Date: 7/16/2023 1:19:49 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[assessments](
+	[id] [bigint] IDENTITY(1,1) NOT NULL,
+	[subscriber_id] [bigint] NOT NULL,
+	[type] [nvarchar](25) NOT NULL,
+	[answers] [nvarchar](max) NOT NULL,
+	[created_at] [datetime] NULL,
+	[updated_at] [datetime] NULL,
+	[app_name] [nvarchar](255) NULL,
+	[org_code] [nvarchar](255) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[blood_sugar_assessments]    Script Date: 7/16/2023 1:19:49 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[blood_sugar_assessments](
+	[id] [bigint] IDENTITY(1,1) NOT NULL,
+	[subscriber_id] [bigint] NOT NULL,
+	[sugar_level] [decimal](5, 2) NOT NULL,
+	[measured_period] [nvarchar](255) NOT NULL,
+	[measured_at] [datetime] NOT NULL,
+	[notes] [nvarchar](max) NULL,
+	[created_at] [datetime] NULL,
+	[updated_at] [datetime] NULL,
+	[app_name] [nvarchar](255) NULL,
+	[org_code] [nvarchar](255) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[cardiovascular_charts]    Script Date: 7/16/2023 1:19:49 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[cardiovascular_charts](
+	[id] [smallint] NOT NULL,
+	[type] [nvarchar](25) NOT NULL,
+	[diabetes] [nvarchar](255) NULL,
+	[gender] [nvarchar](10) NOT NULL,
+	[smoker] [nvarchar](255) NOT NULL,
+	[age_from] [smallint] NOT NULL,
+	[age_to] [smallint] NOT NULL,
+	[bmi_from] [numeric](8, 2) NULL,
+	[bmi_to] [numeric](8, 2) NULL,
+	[cholesterol_from] [numeric](8, 2) NULL,
+	[cholesterol_to] [numeric](8, 2) NULL,
+	[sbp_from] [smallint] NOT NULL,
+	[sbp_to] [smallint] NOT NULL,
+	[risk_level] [smallint] NOT NULL,
+	[created_at] [datetime] NULL,
+	[updated_at] [datetime] NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[cardiovascular_chartsBKP]    Script Date: 7/16/2023 1:19:49 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[cardiovascular_chartsBKP](
+	[id] [bigint] IDENTITY(1,1) NOT NULL,
+	[type] [nvarchar](25) NOT NULL,
+	[diabetes] [nvarchar](255) NULL,
+	[gender] [nvarchar](10) NOT NULL,
+	[smoker] [nvarchar](255) NOT NULL,
+	[age_from] [smallint] NOT NULL,
+	[age_to] [smallint] NOT NULL,
+	[bmi_from] [decimal](8, 2) NULL,
+	[bmi_to] [decimal](8, 2) NULL,
+	[cholesterol_from] [decimal](8, 2) NULL,
+	[cholesterol_to] [decimal](8, 2) NULL,
+	[sbp_from] [smallint] NOT NULL,
+	[sbp_to] [smallint] NOT NULL,
+	[risk_level] [smallint] NOT NULL,
+	[created_at] [datetime] NULL,
+	[updated_at] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[countries]    Script Date: 7/16/2023 1:19:49 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[countries](
+	[id] [bigint] NOT NULL,
+	[name] [nvarchar](255) NOT NULL,
+	[deleted_at] [datetime] NULL,
+	[created_at] [datetime] NOT NULL,
+	[updated_at] [datetime] NOT NULL,
+ CONSTRAINT [PK_countries2] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[dhikrs]    Script Date: 7/16/2023 1:19:49 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[dhikrs](
+	[id] [bigint] IDENTITY(1,1) NOT NULL,
+	[subscriber_id] [bigint] NOT NULL,
+	[title] [nvarchar](100) NOT NULL,
+	[count] [int] NOT NULL,
+	[deleted_at] [datetime] NULL,
+	[created_at] [datetime] NULL,
+	[updated_at] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[failed_jobs]    Script Date: 7/16/2023 1:19:49 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[failed_jobs](
+	[id] [bigint] IDENTITY(1,1) NOT NULL,
+	[uuid] [nvarchar](255) NOT NULL,
+	[connection] [nvarchar](max) NOT NULL,
+	[queue] [nvarchar](max) NOT NULL,
+	[payload] [nvarchar](max) NOT NULL,
+	[exception] [nvarchar](max) NOT NULL,
+	[failed_at] [datetime] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[family_members]    Script Date: 7/16/2023 1:19:49 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[family_members](
+	[id] [bigint] IDENTITY(1,1) NOT NULL,
+	[subscriber_id] [bigint] NOT NULL,
+	[relation] [nvarchar](30) NOT NULL,
+	[name] [nvarchar](100) NOT NULL,
+	[dob] [date] NOT NULL,
+	[deleted_at] [datetime] NULL,
+	[created_at] [datetime] NULL,
+	[updated_at] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[fcm_devices]    Script Date: 7/16/2023 1:19:49 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[fcm_devices](
+	[id] [smallint] IDENTITY(1,1) NOT NULL,
+	[msisdn] [bigint] NOT NULL,
+	[fcm_id] [nvarchar](200) NOT NULL,
+	[created_at] [datetime2](7) NOT NULL,
+	[updated_at] [datetime2](7) NOT NULL,
+	[app_name] [nvarchar](50) NULL,
+	[org_code] [nvarchar](50) NOT NULL,
+	[channel] [nvarchar](50) NOT NULL,
+ CONSTRAINT [PK_fcm_devices] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[feedbacks]    Script Date: 7/16/2023 1:19:49 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[feedbacks](
+	[id] [bigint] IDENTITY(1,1) NOT NULL,
+	[subscriber_id] [bigint] NOT NULL,
+	[rating] [tinyint] NOT NULL,
+	[comment] [nvarchar](max) NULL,
+	[created_at] [datetime] NULL,
+	[updated_at] [datetime] NULL,
+	[service] [nvarchar](50) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[hospitals]    Script Date: 7/16/2023 1:19:49 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[hospitals](
+	[id] [bigint] NOT NULL,
+	[name] [nvarchar](255) NOT NULL,
+	[address] [nvarchar](max) NULL,
+	[discounts] [nvarchar](max) NULL,
+	[location_id] [bigint] NOT NULL,
+	[deleted_at] [datetime] NULL,
+	[created_at] [datetime] NULL,
+	[updated_at] [datetime] NULL,
+	[email] [nvarchar](255) NULL,
+ CONSTRAINT [PK_hospitals2] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[hospitalsBKP]    Script Date: 7/16/2023 1:19:49 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[hospitalsBKP](
+	[id] [bigint] IDENTITY(1,1) NOT NULL,
+	[name] [nvarchar](255) NOT NULL,
+	[address] [nvarchar](max) NULL,
+	[discounts] [nvarchar](max) NULL,
+	[location_id] [bigint] NOT NULL,
+	[deleted_at] [datetime] NULL,
+	[created_at] [datetime] NULL,
+	[updated_at] [datetime] NULL,
+	[email] [nvarchar](255) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[invoices]    Script Date: 7/16/2023 1:19:49 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[invoices](
+	[id] [bigint] IDENTITY(1,1) NOT NULL,
+	[subscriber_id] [bigint] NOT NULL,
+	[hospital_id] [bigint] NOT NULL,
+	[invoice] [nvarchar](255) NOT NULL,
+	[deleted_at] [datetime] NULL,
+	[created_at] [datetime] NULL,
+	[updated_at] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[job_statuses]    Script Date: 7/16/2023 1:19:49 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[job_statuses](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[job_id] [nvarchar](255) NULL,
+	[type] [nvarchar](255) NOT NULL,
+	[queue] [nvarchar](255) NULL,
+	[attempts] [int] NOT NULL,
+	[progress_now] [int] NOT NULL,
+	[progress_max] [int] NOT NULL,
+	[status] [nvarchar](16) NOT NULL,
+	[input] [nvarchar](max) NULL,
+	[output] [nvarchar](max) NULL,
+	[created_at] [datetime] NULL,
+	[updated_at] [datetime] NULL,
+	[started_at] [datetime] NULL,
+	[finished_at] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[jobs]    Script Date: 7/16/2023 1:19:49 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[jobs](
+	[id] [bigint] IDENTITY(1,1) NOT NULL,
+	[queue] [nvarchar](255) NOT NULL,
+	[payload] [nvarchar](max) NOT NULL,
+	[attempts] [tinyint] NOT NULL,
+	[reserved_at] [int] NULL,
+	[available_at] [int] NOT NULL,
+	[created_at] [int] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[leads]    Script Date: 7/16/2023 1:19:49 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[leads](
+	[id] [bigint] IDENTITY(1,1) NOT NULL,
+	[subscriber_id] [bigint] NOT NULL,
+	[plan] [nvarchar](30) NOT NULL,
+	[location_id] [bigint] NOT NULL,
+	[meta] [nvarchar](max) NULL,
+	[deleted_at] [datetime] NULL,
+	[created_at] [datetime] NULL,
+	[updated_at] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[locations]    Script Date: 7/16/2023 1:19:49 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[locations](
+	[id] [bigint] NOT NULL,
+	[name] [nvarchar](255) NOT NULL,
+	[type] [nvarchar](20) NOT NULL,
+	[deleted_at] [datetime] NULL,
+	[created_at] [datetime] NULL,
+	[updated_at] [datetime] NULL,
+	[country_id] [nvarchar](255) NULL,
+ CONSTRAINT [PK_locations2] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[locationsBKP]    Script Date: 7/16/2023 1:19:49 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[locationsBKP](
+	[id] [bigint] IDENTITY(1,1) NOT NULL,
+	[name] [nvarchar](255) NOT NULL,
+	[type] [nvarchar](20) NOT NULL,
+	[deleted_at] [datetime] NULL,
+	[created_at] [datetime] NULL,
+	[updated_at] [datetime] NULL,
+	[country_id] [nvarchar](255) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[lumen_failed_jobs]    Script Date: 7/16/2023 1:19:49 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[lumen_failed_jobs](
+	[id] [bigint] IDENTITY(1,1) NOT NULL,
+	[connection] [nvarchar](max) NOT NULL,
+	[queue] [nvarchar](max) NOT NULL,
+	[payload] [nvarchar](max) NOT NULL,
+	[exception] [nvarchar](max) NOT NULL,
+	[failed_at] [datetime] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[migrations]    Script Date: 7/16/2023 1:19:49 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[migrations](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[migration] [nvarchar](255) NOT NULL,
+	[batch] [int] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[sms_logs]    Script Date: 7/16/2023 1:19:49 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[sms_logs](
+	[id] [bigint] IDENTITY(1,1) NOT NULL,
+	[category] [nvarchar](50) NOT NULL,
+	[msisdn] [nvarchar](13) NOT NULL,
+	[status] [nvarchar](50) NULL,
+	[sms_text] [nvarchar](max) NULL,
+	[csmsid] [nvarchar](255) NULL,
+	[reference_id] [nvarchar](255) NOT NULL,
+	[created_at] [datetime] NULL,
+	[updated_at] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[social_accounts]    Script Date: 7/16/2023 1:19:49 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[social_accounts](
+	[id] [bigint] IDENTITY(1,1) NOT NULL,
+	[msisdn] [nvarchar](20) NOT NULL,
+	[actor_id] [nvarchar](255) NOT NULL,
+	[provider] [nvarchar](30) NOT NULL,
+	[app] [nvarchar](30) NOT NULL,
+	[data] [nvarchar](max) NULL,
+	[created_at] [datetime] NULL,
+	[updated_at] [datetime] NULL,
+	[deleted_at] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[subscribers]    Script Date: 7/16/2023 1:19:49 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[subscribers](
+	[id] [bigint] IDENTITY(1,1) NOT NULL,
+	[subscription_id] [bigint] NULL,
+	[msisdn] [nvarchar](20) NOT NULL,
+	[email] [nvarchar](80) NULL,
+	[first_name] [nvarchar](50) NULL,
+	[last_name] [nvarchar](50) NULL,
+	[dob] [date] NULL,
+	[additional_data] [nvarchar](max) NULL,
+	[created_at] [datetime] NOT NULL,
+	[updated_at] [datetime] NOT NULL,
+	[deleted_at] [datetime] NULL,
+	[referrer_code] [nvarchar](50) NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[subscription_history]    Script Date: 7/16/2023 1:19:49 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[subscription_history](
+	[id] [bigint] IDENTITY(1,1) NOT NULL,
+	[subscriber_id] [bigint] NOT NULL,
+	[old_subscription_id] [bigint] NULL,
+	[new_subscription_id] [bigint] NOT NULL,
+	[old_policy_type] [nvarchar](5) NULL,
+	[new_policy_type] [nvarchar](5) NOT NULL,
+	[created_at] [datetime] NULL,
+	[updated_at] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[subscriptions]    Script Date: 7/16/2023 1:19:49 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[subscriptions](
+	[id] [bigint] IDENTITY(1,1) NOT NULL,
+	[policy_number] [nvarchar](15) NULL,
+	[dob] [date] NOT NULL,
+	[employee_id] [nvarchar](15) NULL,
+	[policy_type] [nvarchar](5) NOT NULL,
+	[subscription_type] [nvarchar](15) NOT NULL,
+	[additional_data] [nvarchar](max) NULL,
+	[created_at] [datetime] NULL,
+	[updated_at] [datetime] NULL,
+	[deleted_at] [datetime] NULL,
+ CONSTRAINT [PK_subscriptions2] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[subscriptionsBKP]    Script Date: 7/16/2023 1:19:49 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[subscriptionsBKP](
+	[id] [bigint] IDENTITY(1,1) NOT NULL,
+	[policy_number] [nvarchar](15) NOT NULL,
+	[dob] [date] NOT NULL,
+	[employee_id] [nvarchar](15) NULL,
+	[policy_type] [nvarchar](5) NOT NULL,
+	[subscription_type] [nvarchar](15) NOT NULL,
+	[additional_data] [nvarchar](max) NULL,
+	[created_at] [datetime] NULL,
+	[updated_at] [datetime] NULL,
+	[deleted_at] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[upgradations]    Script Date: 7/16/2023 1:19:49 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[upgradations](
+	[id] [bigint] IDENTITY(1,1) NOT NULL,
+	[subscriber_id] [bigint] NOT NULL,
+	[policy_number] [nvarchar](15) NOT NULL,
+	[dob] [date] NOT NULL,
+	[deleted_at] [datetime] NULL,
+	[created_at] [datetime] NULL,
+	[updated_at] [datetime] NULL,
+	[attempt] [tinyint] NOT NULL,
+	[policy_type] [nvarchar](10) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[appointments] ADD  DEFAULT ('0') FOR [is_chat_closed]
+GO
+ALTER TABLE [dbo].[failed_jobs] ADD  DEFAULT (getdate()) FOR [failed_at]
+GO
+ALTER TABLE [dbo].[job_statuses] ADD  DEFAULT ('0') FOR [attempts]
+GO
+ALTER TABLE [dbo].[job_statuses] ADD  DEFAULT ('0') FOR [progress_now]
+GO
+ALTER TABLE [dbo].[job_statuses] ADD  DEFAULT ('0') FOR [progress_max]
+GO
+ALTER TABLE [dbo].[job_statuses] ADD  DEFAULT ('queued') FOR [status]
+GO
+ALTER TABLE [dbo].[lumen_failed_jobs] ADD  DEFAULT (getdate()) FOR [failed_at]
+GO
+ALTER TABLE [dbo].[subscriptionsBKP] ADD  DEFAULT ('inforce') FOR [subscription_type]
+GO
+ALTER TABLE [dbo].[upgradations] ADD  DEFAULT ('0') FOR [attempt]
+GO
+/****** Object:  StoredProcedure [ALICOCORP\islams5].[summary_data]    Script Date: 7/16/2023 1:19:49 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [ALICOCORP\islams5].[summary_data]
+AS
+BEGIN
+SET NOCOUNT ON;
+declare @FromDate DATETIME = CAST(GETDATE() AS DATE), @ToDate DATETIME = CAST(GETDATE() AS DATE)
+declare @Total_Reg VARCHAR(50)
+declare @Total_Assessments VARCHAR(50)
+declare @Total_Blood_sugar_assessments VARCHAR(50)
+declare @Total_family_members VARCHAR(50)
+declare @Total_feedbacks VARCHAR(50)
+declare @Total_invoices VARCHAR(50)
+declare @Total_leads VARCHAR(50)
+declare @Total_upgradations_req VARCHAR(50)
+
+set @Total_Reg = (select count(*) from subscribers 
+where CAST(created_at AS DATE) between @FromDate and @ToDate); --ML Server Release date: 2023-06-27
+
+set @Total_Assessments = (select count(*) from [dbo].[assessments] where CAST(created_at AS DATE) between @FromDate and @ToDate);
+set @Total_Blood_sugar_assessments = (select count(*) from [dbo].[blood_sugar_assessments] where CAST(created_at AS DATE) between @FromDate and @ToDate)
+set @Total_family_members = (select count(*) from [dbo].[family_members] where CAST(created_at AS DATE) between @FromDate and @ToDate);
+set @Total_feedbacks = (select count(*) from [dbo].[feedbacks] where CAST(created_at AS DATE) between @FromDate and @ToDate);
+set @Total_invoices = (select count(*) from [dbo].[invoices] where CAST(created_at AS DATE) between @FromDate and @ToDate);
+set @Total_leads = (select count(*) from [dbo].[leads] where CAST(created_at AS DATE) between @FromDate and @ToDate);
+set @Total_upgradations_req = (select count(*) from [dbo].[upgradations] where CAST(created_at AS DATE) between @FromDate and @ToDate);
+
+select 
+	@Total_Reg as Total_Reg, 
+	@Total_Assessments as Total_Assessments, 
+	@Total_Blood_sugar_assessments as Total_Blood_sugar_assessments,
+	@Total_family_members as Total_family_members,
+	@Total_feedbacks as Total_feedbacks,
+	@Total_invoices as Total_invoices,
+	@Total_leads as Total_leads,
+	@Total_upgradations_req as Total_upgradations_req;
+END
+
+-- execute summary_data
+GO
+/****** Object:  StoredProcedure [ALICOCORP\islams5].[summary_data_today]    Script Date: 7/16/2023 1:19:49 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [ALICOCORP\islams5].[summary_data_today]
+AS
+BEGIN
+SET NOCOUNT ON;
+declare @Total_Reg VARCHAR(50)
+declare @Total_Assessments VARCHAR(50)
+declare @Total_Blood_sugar_assessments VARCHAR(50)
+declare @Total_family_members VARCHAR(50)
+declare @Total_feedbacks VARCHAR(50)
+declare @Total_invoices VARCHAR(50)
+declare @Total_leads VARCHAR(50)
+declare @Total_upgradations_req VARCHAR(50)
+
+set @Total_Reg = (select count(*) from subscribers where CAST(created_at AS DATE)>=CAST('2023-06-27' as date)); --ML Server Release date: 2023-06-27
+set @Total_Assessments = (select (select count(*) from [dbo].[assessments]));
+set @Total_Blood_sugar_assessments = (select (select count(*) from [dbo].[blood_sugar_assessments]))
+set @Total_family_members = (select (select count(*) from [dbo].[family_members]));
+set @Total_feedbacks = (select (select count(*) from [dbo].[feedbacks]));
+set @Total_invoices = (select (select count(*) from [dbo].[invoices]));
+set @Total_leads = (select (select count(*) from [dbo].[leads])-1);
+set @Total_upgradations_req = (select (select count(*) from [dbo].[upgradations])-1);
+
+select 
+	@Total_Reg as Total_Reg, 
+	@Total_Assessments as Total_Assessments, 
+	@Total_Blood_sugar_assessments as Total_Blood_sugar_assessments,
+	@Total_family_members as Total_family_members,
+	@Total_feedbacks as Total_feedbacks,
+	@Total_invoices as Total_invoices,
+	@Total_leads as Total_leads,
+	@Total_upgradations_req as Total_upgradations_req;
+END
+
+-- execute summary_data
+GO
